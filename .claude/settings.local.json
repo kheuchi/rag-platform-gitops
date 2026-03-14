@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rm -f argocd/apps/root-app.yaml)",
+      "Bash(mkdir -p tenants/crossplane tenants/rag-dev)",
+      "Bash(rm -rf crossplane env)",
+      "Bash(mv tenants/crossplane tenants/crossplane)"
+    ]
+  }
+}

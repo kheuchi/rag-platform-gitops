@@ -8,14 +8,8 @@ spec:
   sourceRepos:
     - "https://github.com/cheikh-ak/*"
   destinations:
-    # Dev namespace on local cluster
-    - namespace: rag-dev
-      server: https://kubernetes.default.svc
-    # Crossplane system
-    - namespace: crossplane-system
-      server: https://kubernetes.default.svc
-    # ArgoCD self-manage
-    - namespace: argocd
+    # Allow any namespace created by ApplicationSet (tenants/*)
+    - namespace: "*"
       server: https://kubernetes.default.svc
   clusterResourceWhitelist:
     - group: "*"
