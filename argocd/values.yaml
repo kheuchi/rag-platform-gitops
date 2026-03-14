@@ -1,0 +1,73 @@
+# ArgoCD Helm values — minimal dev setup on AKS
+global:
+  domain: argocd.local
+
+configs:
+  params:
+    # Disable TLS on argocd-server (handled by ingress/LB later)
+    server.insecure: true
+  cm:
+    # Timeout for app sync operations
+    timeout.reconciliation: 180s
+    # Allow tracking HEAD on branches
+    resource.customizations.ignoreDifferences.all: |
+      managedFieldsManagers:
+        - Microsoft.ContainerService
+  repositories: {}
+
+server:
+  replicas: 1
+  service:
+    type: LoadBalancer
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 256Mi
+
+controller:
+  replicas: 1
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+
+repoServer:
+  replicas: 1
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 300m
+      memory: 256Mi
+
+applicationSet:
+  replicas: 1
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+    limits:
+      cpu: 200m
+      memory: 128Mi
+
+redis:
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+    limits:
+      cpu: 200m
+      memory: 128Mi
+
+notifications:
+  enabled: false
+
+dex:
+  enabled: false
