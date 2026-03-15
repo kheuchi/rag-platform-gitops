@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: rag-platform
+  namespace: argocd
+spec:
+  description: RAG Platform — all environments
+  sourceRepos:
+    - "https://github.com/cheikh-ak/*"
+  destinations:
+    # Allow any namespace created by ApplicationSet (tenants/*)
+    - namespace: "*"
+      server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+    - group: "*"
+      kind: Namespace
+    - group: "apiextensions.k8s.io"
+      kind: CustomResourceDefinition
+  namespaceResourceWhitelist:
+    - group: "*"
+      kind: "*"

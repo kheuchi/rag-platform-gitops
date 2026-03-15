@@ -1,0 +1,48 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: rag-platform
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+    # Each sub-directory under tenants/ with a config.json becomes an Application
+    - git:
+        repoURL: https://github.com/cheikh-ak/rag-platform-gitops.git
+        revision: main
+        directories:
+          - path: tenants/*
+  template:
+    metadata:
+      name: "{{ .path.basename }}"
+      namespace: argocd
+      labels:
+        app.kubernetes.io/part-of: rag-platform
+        app.kubernetes.io/managed-by: applicationset
+      finalizers:
+        - resources-finalizer.argocd.argoproj.io
+    spec:
+      project: rag-platform
+      source:
+        repoURL: https://github.com/cheikh-ak/rag-platform-gitops.git
+        targetRevision: main
+        path: "{{ .path.path }}"
+        directory:
+          recurse: true
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: "{{ .path.basename }}"
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+          - ServerSideApply=true
+        retry:
+          limit: 3
+          backoff:
+            duration: 5s
+            factor: 2
+            maxDuration: 1m

@@ -1,0 +1,24 @@
+---
+# Azure provider — gère Redis, KeyVault, etc.
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: provider-azure-cache
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  package: xpkg.upbound.io/upbound/provider-azure-cache:v1
+  runtimeConfigRef:
+    name: default
+---
+# GCP provider — pour Vertex AI plus tard
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: provider-gcp-redis
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  package: xpkg.upbound.io/upbound/provider-gcp-redis:v1
+  runtimeConfigRef:
+    name: default
