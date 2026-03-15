@@ -1,0 +1,15 @@
+---
+# ProviderConfig Azure — utilise Workload Identity (pas de secret, WIF AKS → Azure)
+apiVersion: azure.upbound.io/v1beta1
+kind: ProviderConfig
+metadata:
+  name: azure-default
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+spec:
+  credentials:
+    source: OIDCTokenFile
+    oidcTokenFilePath: /var/run/secrets/azure/tokens/azure-identity-token
+  clientID: ${AZURE_CLIENT_ID}        # injecté via External Secrets ou patch Kustomize
+  tenantID: ${AZURE_TENANT_ID}
+  subscriptionID: ${AZURE_SUBSCRIPTION_ID}
