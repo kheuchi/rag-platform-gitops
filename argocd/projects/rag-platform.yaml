@@ -6,7 +6,7 @@ metadata:
 spec:
   description: RAG Platform — all environments
   sourceRepos:
-    - "https://github.com/cheikh-ak/*"
+    - "https://github.com/kheuchi/*"
   destinations:
     # Allow any namespace created by ApplicationSet (tenants/*)
     - namespace: "*"
