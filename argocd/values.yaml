@@ -58,6 +58,8 @@ applicationSet:
       memory: 128Mi
 
 redis:
+  networkPolicy:
+    create: false
   resources:
     requests:
       cpu: 50m
