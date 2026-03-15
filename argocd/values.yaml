@@ -4,8 +4,8 @@ global:
 
 configs:
   params:
-    # Disable TLS on argocd-server (handled by ingress/LB later)
-    server.insecure: true
+    # ArgoCD serves HTTPS directly — self-signed cert, browser warning expected
+    server.insecure: false
   cm:
     # Timeout for app sync operations
     timeout.reconciliation: 180s

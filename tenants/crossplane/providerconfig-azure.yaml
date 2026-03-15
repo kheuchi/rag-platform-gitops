@@ -10,6 +10,6 @@ spec:
   credentials:
     source: OIDCTokenFile
     oidcTokenFilePath: /var/run/secrets/azure/tokens/azure-identity-token
-  clientID: ${AZURE_CLIENT_ID}        # injecté via External Secrets ou patch Kustomize
-  tenantID: ${AZURE_TENANT_ID}
-  subscriptionID: ${AZURE_SUBSCRIPTION_ID}
+  clientID: "a39984ad-1349-4510-b269-d24c0cb1fa16"
+  tenantID: "1d2e4ebb-3b93-405b-b6dc-ae14e9c9ee3e"
+  subscriptionID: "9cee7c54-1645-4fd0-b027-18f4d49cae57"
