@@ -9,7 +9,7 @@ spec:
   generators:
     # Each sub-directory under tenants/ with a config.json becomes an Application
     - git:
-        repoURL: https://github.com/cheikh-ak/rag-platform-gitops.git
+        repoURL: https://github.com/kheuchi/rag-platform-gitops.git
         revision: main
         directories:
           - path: tenants/*
@@ -25,7 +25,7 @@ spec:
     spec:
       project: rag-platform
       source:
-        repoURL: https://github.com/cheikh-ak/rag-platform-gitops.git
+        repoURL: https://github.com/kheuchi/rag-platform-gitops.git
         targetRevision: main
         path: "{{ .path.path }}"
         directory:
