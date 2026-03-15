@@ -4,7 +4,13 @@
       "Bash(rm -f argocd/apps/root-app.yaml)",
       "Bash(mkdir -p tenants/crossplane tenants/rag-dev)",
       "Bash(rm -rf crossplane env)",
-      "Bash(mv tenants/crossplane tenants/crossplane)"
+      "Bash(mv tenants/crossplane tenants/crossplane)",
+      "Bash(kubectl get:*)",
+      "Bash(python3 -c \"import json,sys; s=json.load\\(sys.stdin\\); print\\(''''type:'''', s[''''spec''''][''''type'''']\\); print\\(''''ports:'''', [\\(p[''''port''''], p[''''nodePort'''']\\) for p in s[''''spec''''][''''ports'''']]\\)\")",
+      "Bash(kubelogin convert-kubeconfig:*)",
+      "Bash(kubectl config:*)",
+      "Bash(kubectl describe:*)",
+      "Bash(az account:*)"
     ]
   }
 }
