@@ -1,5 +1,5 @@
 ---
-# ProviderConfig Azure — utilise Workload Identity (pas de secret, WIF AKS → Azure)
+# ProviderConfig Azure — utilise Workload Identity (AKS pod identity → Azure)
 apiVersion: azure.upbound.io/v1beta1
 kind: ProviderConfig
 metadata:
@@ -8,8 +8,7 @@ metadata:
     argocd.argoproj.io/sync-wave: "2"
 spec:
   credentials:
-    source: OIDCTokenFile
-    oidcTokenFilePath: /var/run/secrets/azure/tokens/azure-identity-token
+    source: UserAssignedManagedIdentity
   clientID: "a39984ad-1349-4510-b269-d24c0cb1fa16"
   tenantID: "1d2e4ebb-3b93-405b-b6dc-ae14e9c9ee3e"
   subscriptionID: "9cee7c54-1645-4fd0-b027-18f4d49cae57"

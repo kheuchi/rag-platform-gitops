@@ -7,15 +7,14 @@ spec:
   description: RAG Platform — all environments
   sourceRepos:
     - "https://github.com/kheuchi/*"
+    - "https://charts.crossplane.io/stable"
   destinations:
     # Allow any namespace created by ApplicationSet (tenants/*)
     - namespace: "*"
       server: https://kubernetes.default.svc
   clusterResourceWhitelist:
     - group: "*"
-      kind: Namespace
-    - group: "apiextensions.k8s.io"
-      kind: CustomResourceDefinition
+      kind: "*"
   namespaceResourceWhitelist:
     - group: "*"
       kind: "*"
