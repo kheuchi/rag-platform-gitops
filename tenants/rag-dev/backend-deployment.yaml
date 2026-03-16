@@ -25,7 +25,7 @@ spec:
               name: http
           env:
             - name: NATS_URL
-              value: nats://nats.nats.svc.cluster.local:4222
+              value: nats://nats-helm.nats.svc.cluster.local:4222
             - name: REDIS_HOST
               valueFrom:
                 secretKeyRef:

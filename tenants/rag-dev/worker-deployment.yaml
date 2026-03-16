@@ -22,7 +22,7 @@ spec:
           image: ghcr.io/kheuchi/rag-worker:latest
           env:
             - name: NATS_URL
-              value: nats://nats.nats.svc.cluster.local:4222
+              value: nats://nats-helm.nats.svc.cluster.local:4222
             - name: NATS_SUBJECT
               value: rag.ingest
             - name: REDIS_HOST
