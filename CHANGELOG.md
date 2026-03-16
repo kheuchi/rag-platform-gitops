@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/kheuchi/rag-platform-gitops/compare/v1.0.0...v1.0.1) (2026-03-16)
+
+### Bug Fixes
+
+* **argocd:** add SkipDryRunOnMissingResource for CRD ordering ([5b45c4c](https://github.com/kheuchi/rag-platform-gitops/commit/5b45c4ca28f30b303f930cd14ce3a7fd37a16224))
+* **crossplane:** use UserAssignedManagedIdentity for ProviderConfig ([47d0ec3](https://github.com/kheuchi/rag-platform-gitops/commit/47d0ec3dc145c72e70acea86fdd4b840ac7548a6))
+
 ## 1.0.0 (2026-03-16)
 
 ### Features
