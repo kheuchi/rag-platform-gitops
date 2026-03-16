@@ -1,0 +1,20 @@
+---
+apiVersion: cache.azure.upbound.io/v1beta2
+kind: RedisCache
+metadata:
+  name: redis-rag-dev
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+    crossplane.io/external-name: redis-rag-dev
+spec:
+  forProvider:
+    location: East US
+    resourceGroupName: rg-rag-multicloud
+    capacity: 0
+    family: C
+    skuName: Basic
+    minimumTlsVersion: "1.2"
+    enableNonSslPort: false
+    redisConfiguration: {}
+  providerConfigRef:
+    name: azure-default
