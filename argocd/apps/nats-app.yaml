@@ -1,0 +1,43 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nats-helm
+  namespace: argocd
+spec:
+  project: rag-platform
+  source:
+    repoURL: https://nats-io.github.io/k8s/helm/charts/
+    chart: nats
+    targetRevision: 1.2.6
+    helm:
+      values: |
+        config:
+          jetstream:
+            enabled: true
+            fileStore:
+              pvc:
+                size: 1Gi
+                storageClassName: managed-csi
+          cluster:
+            enabled: false
+        container:
+          merge:
+            resources:
+              requests:
+                cpu: 50m
+                memory: 64Mi
+              limits:
+                cpu: 200m
+                memory: 256Mi
+        reloader:
+          enabled: true
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: nats
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
