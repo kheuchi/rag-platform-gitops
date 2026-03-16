@@ -13,7 +13,7 @@ spec:
   triggers:
     - type: nats-jetstream
       metadata:
-        natsServerMonitoringEndpoint: nats.nats.svc.cluster.local:8222
+        natsServerMonitoringEndpoint: nats-helm.nats.svc.cluster.local:8222
         account: "$G"
         stream: rag-ingest
         consumer: rag-worker
