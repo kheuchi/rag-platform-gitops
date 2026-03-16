@@ -15,6 +15,7 @@ spec:
     skuName: Basic
     minimumTlsVersion: "1.2"
     enableNonSslPort: false
+    redisVersion: "6"
     redisConfiguration: {}
   providerConfigRef:
     name: azure-default
