@@ -1,3 +1,9 @@
+## [1.1.1](https://github.com/kheuchi/rag-platform-gitops/compare/v1.1.0...v1.1.1) (2026-03-16)
+
+### Bug Fixes
+
+* **crossplane:** add required redisVersion field to Redis claim ([a2fef73](https://github.com/kheuchi/rag-platform-gitops/commit/a2fef73da3bac6524f2b225d72f7f0eeff3b8a82))
+
 ## [1.1.0](https://github.com/kheuchi/rag-platform-gitops/compare/v1.0.1...v1.1.0) (2026-03-16)
 
 ### Features
