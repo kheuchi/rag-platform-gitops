@@ -1,3 +1,9 @@
+## [1.1.0](https://github.com/kheuchi/rag-platform-gitops/compare/v1.0.1...v1.1.0) (2026-03-16)
+
+### Features
+
+* **platform:** add Redis, NATS, KEDA and base RAG workloads ([a219622](https://github.com/kheuchi/rag-platform-gitops/commit/a21962269fbd7d6a367b7b5f25b71cd4e72a6a89))
+
 ## [1.0.1](https://github.com/kheuchi/rag-platform-gitops/compare/v1.0.0...v1.0.1) (2026-03-16)
 
 ### Bug Fixes
