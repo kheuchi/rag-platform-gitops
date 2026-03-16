@@ -1,3 +1,9 @@
+## [1.1.2](https://github.com/kheuchi/rag-platform-gitops/compare/v1.1.1...v1.1.2) (2026-03-16)
+
+### Bug Fixes
+
+* **rag-dev:** correct NATS service name to nats-helm ([e019d76](https://github.com/kheuchi/rag-platform-gitops/commit/e019d769d625bda3368ed6dc08efe8e57498f002))
+
 ## [1.1.1](https://github.com/kheuchi/rag-platform-gitops/compare/v1.1.0...v1.1.1) (2026-03-16)
 
 ### Bug Fixes
