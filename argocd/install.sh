@@ -18,8 +18,13 @@ helm upgrade --install argocd argo/argo-cd \
 echo "==> [3/4] Creating AppProject..."
 kubectl apply -f "$SCRIPT_DIR/projects/rag-platform.yaml"
 
-echo "==> [4/4] Deploying root ApplicationSet..."
+echo "==> [4/5] Deploying root ApplicationSet..."
 kubectl apply -f "$SCRIPT_DIR/apps/root-appset.yaml"
+
+echo "==> [5/5] Deploying platform Applications..."
+for app in "$SCRIPT_DIR"/apps/*-app.yaml; do
+  [ -f "$app" ] && kubectl apply -f "$app"
+done
 
 echo ""
 echo "==> Bootstrap complete!"
@@ -27,3 +32,4 @@ echo "Password: $(kubectl -n argocd get secret argocd-initial-admin-secret -o js
 echo "Access:   kubectl port-forward svc/argocd-server -n argocd 8080:443"
 echo ""
 echo "ArgoCD will now auto-discover and sync any directory under tenants/*"
+echo "Platform apps (argocd/apps/*-app.yaml) are managed by ArgoCD after bootstrap."

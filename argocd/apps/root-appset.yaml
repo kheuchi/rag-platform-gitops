@@ -40,9 +40,10 @@ spec:
         syncOptions:
           - CreateNamespace=true
           - ServerSideApply=true
+          - SkipDryRunOnMissingResource=true
         retry:
-          limit: 3
+          limit: 5
           backoff:
-            duration: 5s
+            duration: 10s
             factor: 2
-            maxDuration: 1m
+            maxDuration: 3m
