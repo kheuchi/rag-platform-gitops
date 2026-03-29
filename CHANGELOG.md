@@ -1,3 +1,9 @@
+## [1.2.1](https://github.com/kheuchi/rag-platform-gitops/compare/v1.2.0...v1.2.1) (2026-03-29)
+
+### Bug Fixes
+
+* **argocd:** add OTel Demo Helm repo to rag-platform project sourceRepos ([a84046e](https://github.com/kheuchi/rag-platform-gitops/commit/a84046ed0ab23d5d04a292d2ae66dba46e37ec3a))
+
 ## [1.2.0](https://github.com/kheuchi/rag-platform-gitops/compare/v1.1.2...v1.2.0) (2026-03-29)
 
 ### Features
