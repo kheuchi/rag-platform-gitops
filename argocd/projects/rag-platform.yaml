@@ -10,6 +10,7 @@ spec:
     - "https://charts.crossplane.io/stable"
     - "https://nats-io.github.io/k8s/helm/charts/"
     - "https://kedacore.github.io/charts"
+    - "https://open-telemetry.github.io/opentelemetry-helm-charts"
   destinations:
     # Allow any namespace created by ApplicationSet (tenants/*)
     - namespace: "*"
