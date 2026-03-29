@@ -31,11 +31,6 @@ spec:
           flagd:
             enabled: true
           # Slim down demo services to save resources on dev cluster
-          frontendProxy:
-            enabled: true
-            resources:
-              limits:
-                memory: 128Mi
           accountingService:
             enabled: false
           frauddetectionService:
@@ -44,15 +39,6 @@ spec:
             enabled: false
           imageprovider:
             enabled: false
-
-        # --- Global resource overrides (dev cluster is small) ---
-        default:
-          resources:
-            limits:
-              memory: 256Mi
-            requests:
-              cpu: 10m
-              memory: 64Mi
   destination:
     server: https://kubernetes.default.svc
     namespace: otel-demo
