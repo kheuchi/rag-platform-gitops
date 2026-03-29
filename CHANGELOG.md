@@ -1,3 +1,9 @@
+## [1.2.3](https://github.com/kheuchi/rag-platform-gitops/compare/v1.2.2...v1.2.3) (2026-03-29)
+
+### Bug Fixes
+
+* **otel-demo:** disable checkoutService (depends on disabled Kafka) ([62a0376](https://github.com/kheuchi/rag-platform-gitops/commit/62a03764ada65e1cdff2b2d6403f0034dda073ec))
+
 ## [1.2.2](https://github.com/kheuchi/rag-platform-gitops/compare/v1.2.1...v1.2.2) (2026-03-29)
 
 ### Bug Fixes
