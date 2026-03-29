@@ -1,3 +1,9 @@
+## [1.2.2](https://github.com/kheuchi/rag-platform-gitops/compare/v1.2.1...v1.2.2) (2026-03-29)
+
+### Bug Fixes
+
+* **otel-demo:** remove invalid default.resources from Helm values schema ([21d86f9](https://github.com/kheuchi/rag-platform-gitops/commit/21d86f989a8d1b00f2c005be8af56265f906512b))
+
 ## [1.2.1](https://github.com/kheuchi/rag-platform-gitops/compare/v1.2.0...v1.2.1) (2026-03-29)
 
 ### Bug Fixes
