@@ -1,0 +1,65 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: otel-demo
+  namespace: argocd
+spec:
+  project: rag-platform
+  source:
+    repoURL: https://open-telemetry.github.io/opentelemetry-helm-charts
+    chart: opentelemetry-demo
+    targetRevision: 0.32.8
+    helm:
+      values: |
+        # --- Observability backends ---
+        # Grafana stack: Prometheus + Loki + Tempo + Grafana
+        grafana:
+          enabled: true
+        prometheus:
+          enabled: true
+        jaeger:
+          enabled: false
+        opensearch:
+          enabled: false
+
+        # --- OTel Collector (receives traces/metrics/logs from demo services) ---
+        opentelemetry-collector:
+          enabled: true
+
+        # --- Feature flags (for fault injection / RCA demos) ---
+        components:
+          flagd:
+            enabled: true
+          # Slim down demo services to save resources on dev cluster
+          frontendProxy:
+            enabled: true
+            resources:
+              limits:
+                memory: 128Mi
+          accountingService:
+            enabled: false
+          frauddetectionService:
+            enabled: false
+          kafka:
+            enabled: false
+          imageprovider:
+            enabled: false
+
+        # --- Global resource overrides (dev cluster is small) ---
+        default:
+          resources:
+            limits:
+              memory: 256Mi
+            requests:
+              cpu: 10m
+              memory: 64Mi
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: otel-demo
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
