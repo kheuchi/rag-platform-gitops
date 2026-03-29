@@ -1,3 +1,9 @@
+## [1.2.0](https://github.com/kheuchi/rag-platform-gitops/compare/v1.1.2...v1.2.0) (2026-03-29)
+
+### Features
+
+* **rag-dev:** phase 4.5b — Azure OpenAI, Firestore, KEDA fix, OTel Demo ([#8](https://github.com/kheuchi/rag-platform-gitops/issues/8)) ([687e1e9](https://github.com/kheuchi/rag-platform-gitops/commit/687e1e95757fce2657ff81a55688a303c7256480)), closes [#7](https://github.com/kheuchi/rag-platform-gitops/issues/7)
+
 ## [1.1.2](https://github.com/kheuchi/rag-platform-gitops/compare/v1.1.1...v1.1.2) (2026-03-16)
 
 ### Bug Fixes
