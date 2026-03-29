@@ -21,10 +21,32 @@ spec:
         - name: worker
           image: ghcr.io/kheuchi/rag-worker:latest
           env:
+            # --- NATS ---
             - name: NATS_URL
-              value: nats://nats.nats.svc.cluster.local:4222
+              value: nats://nats-helm.nats.svc.cluster.local:4222
             - name: NATS_SUBJECT
               value: rag.ingest
+            # --- Azure OpenAI (embeddings) ---
+            - name: AZURE_OPENAI_ENDPOINT
+              valueFrom:
+                secretKeyRef:
+                  name: rag-ai-secrets
+                  key: azure-openai-endpoint
+            - name: AZURE_OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: rag-ai-secrets
+                  key: azure-openai-api-key
+            - name: AZURE_OPENAI_EMBEDDING_DEPLOYMENT
+              value: text-embedding-3-small
+            # --- GCP Firestore (vector upsert) ---
+            - name: GCP_PROJECT_ID
+              value: mon-rag-perso-2026
+            - name: FIRESTORE_DATABASE
+              value: "(default)"
+            - name: FIRESTORE_COLLECTION
+              value: code-chunks
+            # --- Redis ---
             - name: REDIS_HOST
               valueFrom:
                 secretKeyRef:
@@ -40,10 +62,10 @@ spec:
           resources:
             requests:
               cpu: 100m
-              memory: 256Mi
-            limits:
-              cpu: 500m
               memory: 512Mi
+            limits:
+              cpu: "1"
+              memory: 1Gi
       tolerations:
         - key: kubernetes.azure.com/scalesetpriority
           operator: Equal

@@ -24,8 +24,42 @@ spec:
             - containerPort: 8000
               name: http
           env:
+            # --- NATS ---
             - name: NATS_URL
-              value: nats://nats.nats.svc.cluster.local:4222
+              value: nats://nats-helm.nats.svc.cluster.local:4222
+            # --- Azure OpenAI ---
+            - name: AZURE_OPENAI_ENDPOINT
+              valueFrom:
+                secretKeyRef:
+                  name: rag-ai-secrets
+                  key: azure-openai-endpoint
+            - name: AZURE_OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: rag-ai-secrets
+                  key: azure-openai-api-key
+            - name: AZURE_OPENAI_CHAT_DEPLOYMENT
+              value: gpt-4o
+            - name: AZURE_OPENAI_EMBEDDING_DEPLOYMENT
+              value: text-embedding-3-small
+            # --- GCP Firestore (vector search) ---
+            - name: GCP_PROJECT_ID
+              value: mon-rag-perso-2026
+            - name: FIRESTORE_DATABASE
+              value: "(default)"
+            - name: FIRESTORE_COLLECTION
+              value: code-chunks
+            # --- GCP Vertex AI (LLM fallback) ---
+            - name: GCP_LOCATION
+              value: us-central1
+            # --- Observability (OTel Demo stack) ---
+            - name: LOKI_URL
+              value: http://otel-demo-loki.otel-demo.svc.cluster.local:3100
+            - name: PROMETHEUS_URL
+              value: http://otel-demo-prometheus-server.otel-demo.svc.cluster.local:9090
+            - name: TEMPO_URL
+              value: http://otel-demo-tempo.otel-demo.svc.cluster.local:3200
+            # --- Redis ---
             - name: REDIS_HOST
               valueFrom:
                 secretKeyRef:
