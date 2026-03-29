@@ -37,6 +37,8 @@ spec:
             enabled: false
           kafka:
             enabled: false
+          checkoutService:
+            enabled: false
           imageprovider:
             enabled: false
   destination:
