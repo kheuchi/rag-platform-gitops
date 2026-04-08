@@ -1,3 +1,14 @@
+## [1.3.0](https://github.com/kheuchi/rag-platform-gitops/compare/v1.2.3...v1.3.0) (2026-04-08)
+
+### Features
+
+* fix KEDA/Redis blockers, add catalog, Langfuse, Kubecost (Phase 5) ([b0aefe2](https://github.com/kheuchi/rag-platform-gitops/commit/b0aefe24fe7d608540045324c458d5f1cb1b5cf0))
+
+### Documentation
+
+* add platform inventory ([0ba68d9](https://github.com/kheuchi/rag-platform-gitops/commit/0ba68d9ec356e5183857745d8f66209830624754))
+* **context:** add CONTEXT.md — shared project status file for LLM context engineering ([38e95cc](https://github.com/kheuchi/rag-platform-gitops/commit/38e95ccbb988f8eff04100dcece0e306fa2a5567))
+
 ## [1.2.3](https://github.com/kheuchi/rag-platform-gitops/compare/v1.2.2...v1.2.3) (2026-03-29)
 
 ### Bug Fixes
