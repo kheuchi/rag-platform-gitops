@@ -59,18 +59,33 @@ spec:
               value: http://otel-demo-prometheus-server.otel-demo.svc.cluster.local:9090
             - name: TEMPO_URL
               value: http://otel-demo-tempo.otel-demo.svc.cluster.local:3200
-            # --- Redis ---
+            # --- Langfuse (LLM observability) ---
+            - name: LANGFUSE_PUBLIC_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: langfuse-secrets
+                  key: public-key
+                  optional: true
+            - name: LANGFUSE_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: langfuse-secrets
+                  key: secret-key
+                  optional: true
+            - name: LANGFUSE_HOST
+              value: http://langfuse.rag-dev.svc.cluster.local:3000
+            # --- Redis (Crossplane-provisioned Azure Cache) ---
             - name: REDIS_HOST
               valueFrom:
                 secretKeyRef:
-                  name: rag-backend-secrets
-                  key: redis-host
+                  name: redis-rag-dev-conn
+                  key: attribute.hostname
                   optional: true
             - name: REDIS_KEY
               valueFrom:
                 secretKeyRef:
-                  name: rag-backend-secrets
-                  key: redis-key
+                  name: redis-rag-dev-conn
+                  key: attribute.primary_access_key
                   optional: true
           resources:
             requests:

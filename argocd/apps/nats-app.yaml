@@ -18,6 +18,9 @@ spec:
               pvc:
                 size: 1Gi
                 storageClassName: managed-csi
+          monitor:
+            enabled: true
+            port: 8222
           cluster:
             enabled: false
         container:
@@ -29,6 +32,14 @@ spec:
               limits:
                 cpu: 200m
                 memory: 256Mi
+        # Expose monitoring port so KEDA nats-jetstream scaler can reach it
+        service:
+          merge:
+            spec:
+              ports:
+                - name: monitor
+                  port: 8222
+                  targetPort: 8222
         reloader:
           enabled: true
   destination:

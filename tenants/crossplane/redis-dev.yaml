@@ -19,3 +19,6 @@ spec:
     redisConfiguration: {}
   providerConfigRef:
     name: azure-default
+  writeConnectionSecretToRef:
+    name: redis-rag-dev-conn
+    namespace: rag-dev

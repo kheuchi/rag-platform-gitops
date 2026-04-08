@@ -39,25 +39,27 @@ spec:
                   key: azure-openai-api-key
             - name: AZURE_OPENAI_EMBEDDING_DEPLOYMENT
               value: text-embedding-3-small
-            # --- GCP Firestore (vector upsert) ---
+            # --- GCP (Firestore + Vertex AI fallback) ---
             - name: GCP_PROJECT_ID
               value: mon-rag-perso-2026
+            - name: GCP_LOCATION
+              value: us-central1
             - name: FIRESTORE_DATABASE
               value: "(default)"
             - name: FIRESTORE_COLLECTION
               value: code-chunks
-            # --- Redis ---
+            # --- Redis (Crossplane-provisioned Azure Cache) ---
             - name: REDIS_HOST
               valueFrom:
                 secretKeyRef:
-                  name: rag-backend-secrets
-                  key: redis-host
+                  name: redis-rag-dev-conn
+                  key: attribute.hostname
                   optional: true
             - name: REDIS_KEY
               valueFrom:
                 secretKeyRef:
-                  name: rag-backend-secrets
-                  key: redis-key
+                  name: redis-rag-dev-conn
+                  key: attribute.primary_access_key
                   optional: true
           resources:
             requests:

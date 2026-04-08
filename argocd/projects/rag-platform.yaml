@@ -11,6 +11,7 @@ spec:
     - "https://nats-io.github.io/k8s/helm/charts/"
     - "https://kedacore.github.io/charts"
     - "https://open-telemetry.github.io/opentelemetry-helm-charts"
+    - "https://kubecost.github.io/cost-analyzer/"
   destinations:
     # Allow any namespace created by ApplicationSet (tenants/*)
     - namespace: "*"

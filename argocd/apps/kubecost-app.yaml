@@ -1,0 +1,49 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kubecost
+  namespace: argocd
+spec:
+  project: rag-platform
+  source:
+    repoURL: https://kubecost.github.io/cost-analyzer/
+    chart: cost-analyzer
+    targetRevision: 2.6.1
+    helm:
+      values: |
+        # Free tier — no enterprise key needed
+        kubecostToken: ""
+        # Lightweight for dev cluster
+        kubecostModel:
+          resources:
+            requests:
+              cpu: 50m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+        # Disable Prometheus bundled install (use OTel Demo's Prometheus)
+        global:
+          prometheus:
+            enabled: false
+            fqdn: http://otel-demo-prometheus-server.otel-demo.svc.cluster.local:9090
+        prometheus:
+          server:
+            enabled: false
+          nodeExporter:
+            enabled: false
+          kube-state-metrics:
+            enabled: false
+        # Disable Grafana bundled (use OTel Demo's Grafana)
+        grafana:
+          enabled: false
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kubecost
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
