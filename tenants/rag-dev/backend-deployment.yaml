@@ -87,6 +87,13 @@ spec:
                   name: redis-rag-dev-conn
                   key: attribute.primary_access_key
                   optional: true
+            # --- GCP credentials (service account key) ---
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: /var/secrets/gcp/key.json
+          volumeMounts:
+            - name: gcp-creds
+              mountPath: /var/secrets/gcp
+              readOnly: true
           resources:
             requests:
               cpu: 100m
@@ -106,6 +113,10 @@ spec:
               port: http
             initialDelaySeconds: 15
             periodSeconds: 20
+      volumes:
+        - name: gcp-creds
+          secret:
+            secretName: gcp-credentials
 ---
 apiVersion: v1
 kind: Service
