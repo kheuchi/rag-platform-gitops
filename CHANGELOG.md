@@ -1,3 +1,13 @@
+## [1.3.1](https://github.com/kheuchi/rag-platform-gitops/compare/v1.3.0...v1.3.1) (2026-04-10)
+
+### Bug Fixes
+
+* resolve KEDA/NATS blockers for worker autoscaling ([92dc70a](https://github.com/kheuchi/rag-platform-gitops/commit/92dc70a12af8f18800fbedbe8de3e0d8ebd00102))
+
+### Documentation
+
+* sync CONTEXT.md, rewrite README with full GitOps architecture ([615bda3](https://github.com/kheuchi/rag-platform-gitops/commit/615bda32577f8df2148d68eaf5c56d97da53ee61))
+
 ## [1.3.0](https://github.com/kheuchi/rag-platform-gitops/compare/v1.2.3...v1.3.0) (2026-04-08)
 
 ### Features
