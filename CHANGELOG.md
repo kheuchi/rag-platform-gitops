@@ -1,3 +1,9 @@
+## [1.3.5](https://github.com/kheuchi/rag-platform-gitops/compare/v1.3.4...v1.3.5) (2026-04-10)
+
+### Bug Fixes
+
+* mount GCP credentials secret in backend and worker deployments ([ad5ae9f](https://github.com/kheuchi/rag-platform-gitops/commit/ad5ae9f22ae79515c503e210bc2cbc4ec36a3aec))
+
 ## [1.3.4](https://github.com/kheuchi/rag-platform-gitops/compare/v1.3.3...v1.3.4) (2026-04-10)
 
 ### Bug Fixes
