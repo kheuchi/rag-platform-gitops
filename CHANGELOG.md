@@ -1,3 +1,9 @@
+## [1.3.2](https://github.com/kheuchi/rag-platform-gitops/compare/v1.3.1...v1.3.2) (2026-04-10)
+
+### Bug Fixes
+
+* remove spot toleration and reduce worker resources for scheduling ([c864cd6](https://github.com/kheuchi/rag-platform-gitops/commit/c864cd6fe3ac5b4ab3a631315c4d7ab7eed1e6e8))
+
 ## [1.3.1](https://github.com/kheuchi/rag-platform-gitops/compare/v1.3.0...v1.3.1) (2026-04-10)
 
 ### Bug Fixes
