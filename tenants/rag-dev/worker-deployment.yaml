@@ -63,13 +63,8 @@ spec:
                   optional: true
           resources:
             requests:
-              cpu: 100m
-              memory: 512Mi
+              cpu: 50m
+              memory: 256Mi
             limits:
-              cpu: "1"
-              memory: 1Gi
-      tolerations:
-        - key: kubernetes.azure.com/scalesetpriority
-          operator: Equal
-          value: spot
-          effect: NoSchedule
+              cpu: 500m
+              memory: 512Mi
