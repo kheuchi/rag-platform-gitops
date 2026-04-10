@@ -1,3 +1,9 @@
+## [1.3.3](https://github.com/kheuchi/rag-platform-gitops/compare/v1.3.2...v1.3.3) (2026-04-10)
+
+### Bug Fixes
+
+* disable Langfuse (replicas 0) to free resources for worker ([8690d83](https://github.com/kheuchi/rag-platform-gitops/commit/8690d836cb753c6c57447400247cf1b1ceeecbf2))
+
 ## [1.3.2](https://github.com/kheuchi/rag-platform-gitops/compare/v1.3.1...v1.3.2) (2026-04-10)
 
 ### Bug Fixes
