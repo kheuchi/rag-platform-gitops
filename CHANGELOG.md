@@ -1,3 +1,9 @@
+## [1.3.4](https://github.com/kheuchi/rag-platform-gitops/compare/v1.3.3...v1.3.4) (2026-04-10)
+
+### Bug Fixes
+
+* disable non-essential OTel Demo services to fit on D2s_v3 node ([36d49e8](https://github.com/kheuchi/rag-platform-gitops/commit/36d49e88823839d5bb9d4baf64c53394b60722bb))
+
 ## [1.3.3](https://github.com/kheuchi/rag-platform-gitops/compare/v1.3.2...v1.3.3) (2026-04-10)
 
 ### Bug Fixes
