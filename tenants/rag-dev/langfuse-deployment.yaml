@@ -11,7 +11,7 @@ metadata:
     app: langfuse
     component: observability
 spec:
-  replicas: 1
+  replicas: 0  # Phase 5 — disabled until PostgreSQL is available
   selector:
     matchLabels:
       app: langfuse
