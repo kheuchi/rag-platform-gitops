@@ -34,12 +34,10 @@ spec:
                 memory: 256Mi
         # Expose monitoring port so KEDA nats-jetstream scaler can reach it
         service:
-          merge:
-            spec:
-              ports:
-                - name: monitor
-                  port: 8222
-                  targetPort: 8222
+          ports:
+            monitor:
+              enabled: true
+              port: 8222
         reloader:
           enabled: true
   destination:
