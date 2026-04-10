@@ -26,11 +26,21 @@ spec:
         opentelemetry-collector:
           enabled: true
 
-        # --- Feature flags (for fault injection / RCA demos) ---
+        # --- Demo services: disable most to save resources (D2s_v3 = 2 vCPU) ---
+        # Keep only: flagd, frontend, frontendProxy, cartService, productCatalogService, otelcol
+        # These generate enough traces/metrics/logs for RCA agent demos
         components:
           flagd:
             enabled: true
-          # Slim down demo services to save resources on dev cluster
+          frontendProxy:
+            enabled: true
+          frontend:
+            enabled: true
+          cartService:
+            enabled: true
+          productCatalogService:
+            enabled: true
+          # Disabled to save resources
           accountingService:
             enabled: false
           frauddetectionService:
@@ -40,6 +50,22 @@ spec:
           checkoutService:
             enabled: false
           imageprovider:
+            enabled: false
+          adService:
+            enabled: false
+          emailService:
+            enabled: false
+          paymentService:
+            enabled: false
+          quoteService:
+            enabled: false
+          recommendationService:
+            enabled: false
+          shippingService:
+            enabled: false
+          currencyService:
+            enabled: false
+          loadgenerator:
             enabled: false
   destination:
     server: https://kubernetes.default.svc
