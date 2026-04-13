@@ -1,3 +1,9 @@
+## [1.3.6](https://github.com/kheuchi/rag-platform-gitops/compare/v1.3.5...v1.3.6) (2026-04-13)
+
+### Bug Fixes
+
+* **rag-backend:** bump memory 512Mi -> 1Gi for RCA agent ([#9](https://github.com/kheuchi/rag-platform-gitops/issues/9)) ([c940211](https://github.com/kheuchi/rag-platform-gitops/commit/c9402116525c6a4a07227352d6642c28fa8ac178))
+
 ## [1.3.5](https://github.com/kheuchi/rag-platform-gitops/compare/v1.3.4...v1.3.5) (2026-04-10)
 
 ### Bug Fixes
