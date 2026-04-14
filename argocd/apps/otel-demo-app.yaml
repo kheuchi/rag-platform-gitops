@@ -21,10 +21,23 @@ spec:
           enabled: true
         opensearch:
           enabled: true
+          resources:
+            requests:
+              cpu: 50m
+              memory: 100Mi
+            limits:
+              memory: 1Gi
 
         # --- OTel Collector (receives traces/metrics/logs from demo services) ---
         opentelemetry-collector:
           enabled: true
+          config:
+            exporters:
+              opensearch:
+                http:
+                  endpoint: http://otel-demo-opensearch:9200
+                  tls:
+                    insecure: true
 
         # --- Demo services: disable most to save resources (D2s_v3 = 2 vCPU) ---
         # Keep only: flagd, frontend, frontendProxy, cartService, productCatalogService, otelcol
@@ -77,5 +90,6 @@ spec:
     syncOptions:
       - CreateNamespace=true
       - ServerSideApply=true
+
 
 
