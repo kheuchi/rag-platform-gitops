@@ -31,6 +31,11 @@ spec:
         # --- OTel Collector (receives traces/metrics/logs from demo services) ---
         opentelemetry-collector:
           enabled: true
+          mode: daemonset
+          presets:
+            logsCollection:
+              enabled: true
+              includeCollectorLogs: false
           config:
             exporters:
               opensearch:
