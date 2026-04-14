@@ -1,4 +1,4 @@
-apiVersion: apps/v1
+﻿apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: rag-backend
@@ -53,12 +53,12 @@ spec:
             - name: GCP_LOCATION
               value: us-central1
             # --- Observability (OTel Demo stack) ---
-            - name: LOKI_URL
-              value: http://otel-demo-loki.otel-demo.svc.cluster.local:3100
+            - name: OPENSEARCH_URL
+              value: http://otel-demo-opensearch.otel-demo.svc.cluster.local:9200
             - name: PROMETHEUS_URL
               value: http://otel-demo-prometheus-server.otel-demo.svc.cluster.local:9090
-            - name: TEMPO_URL
-              value: http://otel-demo-tempo.otel-demo.svc.cluster.local:3200
+            - name: JAEGER_URL
+              value: http://otel-demo-jaeger-query.otel-demo.svc.cluster.local:16686
             # --- Langfuse (LLM observability) ---
             - name: LANGFUSE_PUBLIC_KEY
               valueFrom:
@@ -130,3 +130,4 @@ spec:
     - port: 80
       targetPort: http
       name: http
+
