@@ -1,3 +1,9 @@
+## [1.4.0](https://github.com/kheuchi/rag-platform-gitops/compare/v1.3.6...v1.4.0) (2026-04-14)
+
+### Features
+
+* align otel demo manifests with RCA observability ([#10](https://github.com/kheuchi/rag-platform-gitops/issues/10)) ([ef5242d](https://github.com/kheuchi/rag-platform-gitops/commit/ef5242dd089f4eb6812ce08b1347765c7a939e75))
+
 ## [1.3.6](https://github.com/kheuchi/rag-platform-gitops/compare/v1.3.5...v1.3.6) (2026-04-13)
 
 ### Bug Fixes
