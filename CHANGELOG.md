@@ -1,3 +1,9 @@
+## [1.5.1](https://github.com/kheuchi/rag-platform-gitops/compare/v1.5.0...v1.5.1) (2026-04-14)
+
+### Bug Fixes
+
+* switch rag-dev providers back to azure ([#14](https://github.com/kheuchi/rag-platform-gitops/issues/14)) ([17cde3b](https://github.com/kheuchi/rag-platform-gitops/commit/17cde3b68a728c7406be193003c2a52ce359909d))
+
 ## [1.5.0](https://github.com/kheuchi/rag-platform-gitops/compare/v1.4.2...v1.5.0) (2026-04-14)
 
 ### Features
