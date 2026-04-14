@@ -1,3 +1,9 @@
+## [1.4.1](https://github.com/kheuchi/rag-platform-gitops/compare/v1.4.0...v1.4.1) (2026-04-14)
+
+### Bug Fixes
+
+* align otel collector opensearch log export ([#11](https://github.com/kheuchi/rag-platform-gitops/issues/11)) ([30387b8](https://github.com/kheuchi/rag-platform-gitops/commit/30387b8f970bc0dfb7749ab6b6b198754585f090))
+
 ## [1.4.0](https://github.com/kheuchi/rag-platform-gitops/compare/v1.3.6...v1.4.0) (2026-04-14)
 
 ### Features
