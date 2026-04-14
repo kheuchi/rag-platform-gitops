@@ -1,4 +1,4 @@
-﻿apiVersion: apps/v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: rag-backend
@@ -42,6 +42,14 @@ spec:
               value: gpt-4o
             - name: AZURE_OPENAI_EMBEDDING_DEPLOYMENT
               value: text-embedding-3-small
+            - name: LLM_PROVIDER_STRATEGY
+              value: switch
+            - name: LLM_SWITCH_PROVIDER
+              value: vertex
+            - name: EMBEDDING_PROVIDER_STRATEGY
+              value: switch
+            - name: EMBEDDING_SWITCH_PROVIDER
+              value: vertex
             # --- GCP Firestore (vector search) ---
             - name: GCP_PROJECT_ID
               value: mon-rag-perso-2026
@@ -130,4 +138,5 @@ spec:
     - port: 80
       targetPort: http
       name: http
+
 

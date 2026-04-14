@@ -39,6 +39,10 @@ spec:
                   key: azure-openai-api-key
             - name: AZURE_OPENAI_EMBEDDING_DEPLOYMENT
               value: text-embedding-3-small
+            - name: EMBEDDING_PROVIDER_STRATEGY
+              value: switch
+            - name: EMBEDDING_SWITCH_PROVIDER
+              value: vertex
             # --- GCP (Firestore + Vertex AI fallback) ---
             - name: GCP_PROJECT_ID
               value: mon-rag-perso-2026
@@ -79,3 +83,4 @@ spec:
         - name: gcp-creds
           secret:
             secretName: gcp-credentials
+
