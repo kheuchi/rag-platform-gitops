@@ -45,11 +45,11 @@ spec:
             - name: LLM_PROVIDER_STRATEGY
               value: switch
             - name: LLM_SWITCH_PROVIDER
-              value: vertex
+              value: azure
             - name: EMBEDDING_PROVIDER_STRATEGY
               value: switch
             - name: EMBEDDING_SWITCH_PROVIDER
-              value: vertex
+              value: azure
             # --- GCP Firestore (vector search) ---
             - name: GCP_PROJECT_ID
               value: mon-rag-perso-2026
@@ -138,5 +138,7 @@ spec:
     - port: 80
       targetPort: http
       name: http
+
+
 
 
