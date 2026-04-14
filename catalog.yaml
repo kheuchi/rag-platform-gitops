@@ -1,4 +1,4 @@
-# RAG Platform — Centralized Service Catalog
+﻿# RAG Platform â€” Centralized Service Catalog
 # Single source of truth for all platform components across 3 repos.
 # Repos: rag-platform-infra, rag-platform-gitops, rag-platform-app
 
@@ -11,7 +11,7 @@ metadata:
   cloud: multi-cloud (Azure + GCP)
 
 # ---------------------------------------------------------------------------
-# Infrastructure (rag-platform-infra — Terraform)
+# Infrastructure (rag-platform-infra â€” Terraform)
 # ---------------------------------------------------------------------------
 infrastructure:
   cluster:
@@ -55,10 +55,10 @@ infrastructure:
   identity:
     - name: wif-azure-gcp
       type: Workload Identity Federation
-      description: Azure AD trust for GCP — no static keys
+      description: Azure AD trust for GCP â€” no static keys
 
 # ---------------------------------------------------------------------------
-# Platform Services (rag-platform-gitops — ArgoCD)
+# Platform Services (rag-platform-gitops â€” ArgoCD)
 # ---------------------------------------------------------------------------
 platform:
   argocd:
@@ -91,8 +91,8 @@ platform:
     backends:
       grafana: true
       prometheus: true
-      loki: true
-      tempo: true
+      opensearch: true
+      jaeger: true
     disabled_services: [accountingService, frauddetectionService, kafka, checkoutService, imageprovider]
 
   langfuse:
@@ -106,7 +106,7 @@ platform:
     status: Phase 5
 
 # ---------------------------------------------------------------------------
-# Application Services (rag-platform-app — Python)
+# Application Services (rag-platform-app â€” Python)
 # ---------------------------------------------------------------------------
 application:
   backend:
@@ -117,11 +117,11 @@ application:
     port: 8000
     replicas: 1
     routes:
-      - POST /ingest        — single document ingestion via NATS
-      - POST /ingest/repo   — full repo ingestion (cold path)
-      - GET  /ingest/status/{job_id} — job status via Redis
-      - POST /query          — vector search (Firestore)
-      - POST /query/rca      — LangGraph RCA agent (SSE streaming)
+      - POST /ingest        â€” single document ingestion via NATS
+      - POST /ingest/repo   â€” full repo ingestion (cold path)
+      - GET  /ingest/status/{job_id} â€” job status via Redis
+      - POST /query          â€” vector search (Firestore)
+      - POST /query/rca      â€” LangGraph RCA agent (SSE streaming)
       - GET  /health
     dependencies:
       - NATS JetStream (publish ingest jobs)
@@ -129,7 +129,7 @@ application:
       - GCP Firestore (vector search)
       - Azure OpenAI (chat LLM + embeddings)
       - Vertex AI (chat LLM fallback)
-      - Loki, Prometheus, Tempo (hot path observability tools)
+      - OpenSearch, Prometheus, Jaeger (hot path observability tools)
 
   worker:
     name: rag-worker
@@ -155,9 +155,9 @@ application:
     flow: plan_search -> execute_tools -> correlate_findings -> synthesize_root_cause
     tools:
       - search_code_vectors (Firestore)
-      - query_loki_logs (Loki LogQL)
+      - query_opensearch_logs (OpenSearch query API)
       - query_prometheus_metrics (Prometheus PromQL)
-      - query_tempo_traces (Tempo TraceQL)
+      - query_jaeger_traces (Jaeger trace API)
     max_iterations: 8
     llm: Azure OpenAI gpt-4o (primary) + Vertex AI gemini-1.5-pro (fallback)
 
@@ -173,7 +173,7 @@ ci_cd:
   registry: ghcr.io/kheuchi
 
 # ---------------------------------------------------------------------------
-# Secrets (manual — not in git)
+# Secrets (manual â€” not in git)
 # ---------------------------------------------------------------------------
 secrets:
   rag-ai-secrets:
@@ -183,3 +183,4 @@ secrets:
     namespace: rag-dev
     keys: [redis-host, redis-key]
     source: Crossplane Azure Redis (manual copy or writeConnectionSecretToRef)
+

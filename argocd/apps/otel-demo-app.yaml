@@ -1,4 +1,4 @@
-apiVersion: argoproj.io/v1alpha1
+﻿apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: otel-demo
@@ -12,15 +12,15 @@ spec:
     helm:
       values: |
         # --- Observability backends ---
-        # Grafana stack: Prometheus + Loki + Tempo + Grafana
+        # Grafana stack: Prometheus + OpenSearch + Jaeger + Grafana
         grafana:
           enabled: true
         prometheus:
           enabled: true
         jaeger:
-          enabled: false
+          enabled: true
         opensearch:
-          enabled: false
+          enabled: true
 
         # --- OTel Collector (receives traces/metrics/logs from demo services) ---
         opentelemetry-collector:
@@ -77,3 +77,5 @@ spec:
     syncOptions:
       - CreateNamespace=true
       - ServerSideApply=true
+
+
