@@ -1,3 +1,9 @@
+## [1.4.2](https://github.com/kheuchi/rag-platform-gitops/compare/v1.4.1...v1.4.2) (2026-04-14)
+
+### Bug Fixes
+
+* collect otel demo pod logs via filelog ([#12](https://github.com/kheuchi/rag-platform-gitops/issues/12)) ([fb8c154](https://github.com/kheuchi/rag-platform-gitops/commit/fb8c15469482db1ab2caec7f538104108567ff3f))
+
 ## [1.4.1](https://github.com/kheuchi/rag-platform-gitops/compare/v1.4.0...v1.4.1) (2026-04-14)
 
 ### Bug Fixes
