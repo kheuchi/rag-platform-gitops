@@ -42,7 +42,7 @@ spec:
             - name: EMBEDDING_PROVIDER_STRATEGY
               value: switch
             - name: EMBEDDING_SWITCH_PROVIDER
-              value: vertex
+              value: azure
             # --- GCP (Firestore + Vertex AI fallback) ---
             - name: GCP_PROJECT_ID
               value: mon-rag-perso-2026
@@ -83,4 +83,3 @@ spec:
         - name: gcp-creds
           secret:
             secretName: gcp-credentials
-
