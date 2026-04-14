@@ -1,3 +1,9 @@
+## [1.5.0](https://github.com/kheuchi/rag-platform-gitops/compare/v1.4.2...v1.5.0) (2026-04-14)
+
+### Features
+
+* add provider switch env vars ([#13](https://github.com/kheuchi/rag-platform-gitops/issues/13)) ([753899a](https://github.com/kheuchi/rag-platform-gitops/commit/753899a2ea7e2792f03f1a5e9bbe086ff7bff782))
+
 ## [1.4.2](https://github.com/kheuchi/rag-platform-gitops/compare/v1.4.1...v1.4.2) (2026-04-14)
 
 ### Bug Fixes
