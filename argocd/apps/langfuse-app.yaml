@@ -1,0 +1,135 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: langfuse
+  namespace: argocd
+spec:
+  project: rag-platform
+  source:
+    repoURL: https://langfuse.github.io/langfuse-k8s
+    chart: langfuse
+    targetRevision: 1.5.26
+    helm:
+      values: |
+        langfuse:
+          additionalEnv:
+            - name: NODE_OPTIONS
+              value: --max-old-space-size=768
+          nextauth:
+            url: http://langfuse-web.rag-dev.svc.cluster.local:3000
+            secret:
+              secretKeyRef:
+                name: langfuse-core-secrets
+                key: nextauth-secret
+          salt:
+            secretKeyRef:
+              name: langfuse-core-secrets
+              key: salt
+          encryptionKey:
+            secretKeyRef:
+              name: langfuse-core-secrets
+              key: encryption-key
+          features:
+            telemetryEnabled: false
+          web:
+            service:
+              type: ClusterIP
+              port: 3000
+            livenessProbe:
+              initialDelaySeconds: 90
+              timeoutSeconds: 5
+              periodSeconds: 10
+              failureThreshold: 6
+            readinessProbe:
+              initialDelaySeconds: 45
+              timeoutSeconds: 5
+              periodSeconds: 10
+              failureThreshold: 12
+            resources:
+              requests:
+                cpu: 50m
+                memory: 384Mi
+              limits:
+                cpu: 500m
+                memory: 1Gi
+          worker:
+            livenessProbe:
+              initialDelaySeconds: 60
+              timeoutSeconds: 5
+              periodSeconds: 10
+              failureThreshold: 6
+            resources:
+              requests:
+                cpu: 25m
+                memory: 256Mi
+              limits:
+                cpu: 500m
+                memory: 1Gi
+        postgresql:
+          auth:
+            existingSecret: langfuse-postgresql-secret
+          primary:
+            resources:
+              requests:
+                cpu: 10m
+                memory: 128Mi
+              limits:
+                cpu: 250m
+                memory: 256Mi
+        redis:
+          auth:
+            existingSecret: langfuse-redis-secret
+            existingSecretPasswordKey: password
+          primary:
+            resources:
+              requests:
+                cpu: 10m
+                memory: 64Mi
+              limits:
+                cpu: 250m
+                memory: 128Mi
+        clickhouse:
+          auth:
+            existingSecret: langfuse-clickhouse-secret
+            existingSecretKey: password
+          replicaCount: 1
+          clusterEnabled: false
+          zookeeper:
+            enabled: false
+          resources:
+            requests:
+              cpu: 25m
+              memory: 192Mi
+            limits:
+              cpu: 500m
+              memory: 768Mi
+        s3:
+          auth:
+            existingSecret: langfuse-minio-secret
+            rootUserSecretKey: root-user
+            rootPasswordSecretKey: root-password
+          accessKeyId:
+            secretKeyRef:
+              name: langfuse-minio-secret
+              key: root-user
+          secretAccessKey:
+            secretKeyRef:
+              name: langfuse-minio-secret
+              key: root-password
+          resources:
+            requests:
+              cpu: 10m
+              memory: 64Mi
+            limits:
+              cpu: 250m
+              memory: 128Mi
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: rag-dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
