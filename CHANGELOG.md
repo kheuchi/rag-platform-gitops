@@ -1,3 +1,9 @@
+## [1.6.0](https://github.com/kheuchi/rag-platform-gitops/compare/v1.5.1...v1.6.0) (2026-04-16)
+
+### Features
+
+* expose chainlit and align langfuse gitops ([8b6c662](https://github.com/kheuchi/rag-platform-gitops/commit/8b6c662b29da68114eac0b57049dc0ba9a57ac2f))
+
 ## [1.5.1](https://github.com/kheuchi/rag-platform-gitops/compare/v1.5.0...v1.5.1) (2026-04-14)
 
 ### Bug Fixes
