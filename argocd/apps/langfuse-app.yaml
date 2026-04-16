@@ -16,7 +16,7 @@ spec:
             - name: NODE_OPTIONS
               value: --max-old-space-size=768
           nextauth:
-            url: http://langfuse-web.rag-dev.svc.cluster.local:3000
+            url: http://langfuse.20.124.47.17.nip.io
             secret:
               secretKeyRef:
                 name: langfuse-core-secrets
