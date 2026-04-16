@@ -1,35 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: rag-backend
+  name: rag-chainlit
   namespace: rag-dev
   labels:
-    app: rag-backend
-    component: api
+    app: rag-chainlit
+    component: ui
 spec:
   replicas: 1
   strategy:
     type: Recreate
   selector:
     matchLabels:
-      app: rag-backend
+      app: rag-chainlit
   template:
     metadata:
       labels:
-        app: rag-backend
-        component: api
+        app: rag-chainlit
+        component: ui
     spec:
+      imagePullSecrets:
+        - name: ghcr-pull-secret
       containers:
-        - name: backend
-          image: ghcr.io/kheuchi/rag-backend:latest
+        - name: chainlit
+          image: ghcr.io/kheuchi/rag-chainlit:latest
           ports:
             - containerPort: 8000
               name: http
           env:
-            # --- NATS ---
-            - name: NATS_URL
-              value: nats://nats-helm.nats.svc.cluster.local:4222
-            # --- Azure OpenAI ---
             - name: AZURE_OPENAI_ENDPOINT
               valueFrom:
                 secretKeyRef:
@@ -52,24 +50,20 @@ spec:
               value: switch
             - name: EMBEDDING_SWITCH_PROVIDER
               value: azure
-            # --- GCP Firestore (vector search) ---
             - name: GCP_PROJECT_ID
               value: mon-rag-perso-2026
+            - name: GCP_LOCATION
+              value: us-central1
             - name: FIRESTORE_DATABASE
               value: "(default)"
             - name: FIRESTORE_COLLECTION
               value: code-chunks
-            # --- GCP Vertex AI (LLM fallback) ---
-            - name: GCP_LOCATION
-              value: us-central1
-            # --- Observability (OTel Demo stack) ---
             - name: OPENSEARCH_URL
               value: http://otel-demo-opensearch.otel-demo.svc.cluster.local:9200
             - name: PROMETHEUS_URL
               value: http://otel-demo-prometheus-server.otel-demo.svc.cluster.local:9090
             - name: JAEGER_URL
               value: http://otel-demo-jaeger-query.otel-demo.svc.cluster.local:16686
-            # --- Langfuse (LLM observability) ---
             - name: LANGFUSE_PUBLIC_KEY
               valueFrom:
                 secretKeyRef:
@@ -84,20 +78,21 @@ spec:
                   optional: true
             - name: LANGFUSE_BASE_URL
               value: http://langfuse-web.rag-dev.svc.cluster.local:3000
-            # --- Redis (Crossplane-provisioned Azure Cache) ---
-            - name: REDIS_HOST
+            - name: CHAINLIT_AUTH_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: redis-rag-dev-conn
-                  key: attribute.hostname
-                  optional: true
-            - name: REDIS_KEY
+                  name: chainlit-auth-secrets
+                  key: auth-secret
+            - name: CHAINLIT_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: redis-rag-dev-conn
-                  key: attribute.primary_access_key
-                  optional: true
-            # --- GCP credentials (service account key) ---
+                  name: chainlit-auth-secrets
+                  key: username
+            - name: CHAINLIT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: chainlit-auth-secrets
+                  key: password
             - name: GOOGLE_APPLICATION_CREDENTIALS
               value: /var/secrets/gcp/key.json
           volumeMounts:
@@ -106,22 +101,20 @@ spec:
               readOnly: true
           resources:
             requests:
-              cpu: 100m
-              memory: 512Mi
+              cpu: 10m
+              memory: 256Mi
             limits:
               cpu: 500m
-              memory: 1Gi
+              memory: 512Mi
           readinessProbe:
-            httpGet:
-              path: /health
-              port: http
-            initialDelaySeconds: 5
-            periodSeconds: 10
-          livenessProbe:
-            httpGet:
-              path: /health
+            tcpSocket:
               port: http
             initialDelaySeconds: 15
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: http
+            initialDelaySeconds: 30
             periodSeconds: 20
       volumes:
         - name: gcp-creds
@@ -131,13 +124,34 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: rag-backend
+  name: rag-chainlit
   namespace: rag-dev
 spec:
   selector:
-    app: rag-backend
+    app: rag-chainlit
   ports:
-    - port: 80
+    - port: 8000
       targetPort: http
       name: http
 
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: rag-chainlit
+  namespace: rag-dev
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "300"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "300"
+spec:
+  ingressClassName: nginx
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: rag-chainlit
+                port:
+                  number: 8000

@@ -12,6 +12,8 @@ spec:
     - "https://kedacore.github.io/charts"
     - "https://open-telemetry.github.io/opentelemetry-helm-charts"
     - "https://kubecost.github.io/cost-analyzer/"
+    - "https://langfuse.github.io/langfuse-k8s"
+    - "https://kubernetes.github.io/ingress-nginx"
   destinations:
     # Allow any namespace created by ApplicationSet (tenants/*)
     - namespace: "*"
