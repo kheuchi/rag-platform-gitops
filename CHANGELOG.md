@@ -1,3 +1,9 @@
+## [1.7.0](https://github.com/kheuchi/rag-platform-gitops/compare/v1.6.0...v1.7.0) (2026-04-16)
+
+### Features
+
+* expose langfuse via ingress ([9534149](https://github.com/kheuchi/rag-platform-gitops/commit/95341498b3925ee0e8dc3ecd68ceac87e19a7390))
+
 ## [1.6.0](https://github.com/kheuchi/rag-platform-gitops/compare/v1.5.1...v1.6.0) (2026-04-16)
 
 ### Features
