@@ -1,3 +1,9 @@
+## [1.7.1](https://github.com/kheuchi/rag-platform-gitops/compare/v1.7.0...v1.7.1) (2026-04-21)
+
+### Bug Fixes
+
+* increase resource requests and limits for langfuse application ([00d3316](https://github.com/kheuchi/rag-platform-gitops/commit/00d33162745224c3285e1834165dd79b09f9466b))
+
 ## [1.7.0](https://github.com/kheuchi/rag-platform-gitops/compare/v1.6.0...v1.7.0) (2026-04-16)
 
 ### Features
