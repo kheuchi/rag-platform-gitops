@@ -118,11 +118,11 @@ spec:
               key: root-password
           resources:
             requests:
-              cpu: 10m
-              memory: 64Mi
+              cpu: 50m
+              memory: 256Mi
             limits:
-              cpu: 250m
-              memory: 128Mi
+              cpu: 500m
+              memory: 512Mi
   destination:
     server: https://kubernetes.default.svc
     namespace: rag-dev
